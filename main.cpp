@@ -185,7 +185,7 @@ int main(){
 
     while(true){
         cout <<#n=== PAYROLL SYSTEM MENU ===#n";
-        cout << "1. Add Employee\N";
+        cout << "1. Add Employee\n";
         cout << "2. View Employee\n";
         cout << "3. Update Employee\n";
         cout << "4. Delete Employee\n";
