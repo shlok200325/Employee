@@ -29,12 +29,31 @@ class Payroll
     Employee *temp = head;
     while (temp != nullptr)
     {
+<<<<<<< HEAD
         if (temp->id == id)
+=======
+        Employee *checkTemp = head;
+        while(checkTemp!=nullptr)
+        {
+            if(checkTemp->emp_id==id)
+            {
+                cout << "Error: Employee with ID" << id << " already exists." << endl;
+                return;
+            }
+            checkTemp = checkTemp->next;
+        }
+        Employee *newEmp = new Employee{id, name, des, sal, nullptr};
+        if(head==nullptr)
+>>>>>>> 32dba8d8ffb4f1bbac61a19129d76bc72c261a88
         {
             cout << "Error: Employee with ID " << id << " already exists." << endl;
             return;
         }
+<<<<<<< HEAD
         temp = temp->next;
+=======
+        cout << "Employee with ID " << id << " added successfully." << endl;
+>>>>>>> 32dba8d8ffb4f1bbac61a19129d76bc72c261a88
     }
 
     // 2. Allocate memory for the new node
