@@ -24,68 +24,35 @@ class Payroll
     }
 
 
-  void addEmployee(int id, const string &name, const string &des, double sal)
-{
-    // 1. Check if an employee with this ID already exists
-    Employee *temp = head;
-    while (temp != nullptr)
-    {
-
-        if (temp->emp_id == id)
-        {
-            cout << "Error: Employee with ID " << id << " already exists." << endl;
-            return;
-        }
-        Employee *checkTemp = head;
-        while(checkTemp!=nullptr)
-        {
-            if(checkTemp->emp_id==id)
-            {
-                cout << "Error: Employee with ID" << id << " already exists." << endl;
-                return;
+  // --- Add Employee (With Correctly Placed Duplicate Check) ---
+    void addEmployee(int id, string name, string desig, double sal) {
+        
+        // 1. DUPLICATE CHECK MUST BE FIRST!
+        Employee* checkTemp = head;
+        while (checkTemp != nullptr) {
+            if (checkTemp->emp_id == id) {
+                cout << "Error: Employee with ID " << id << " already exists.\n";
+                return; // Exits the function BEFORE the employee is added
             }
             checkTemp = checkTemp->next;
         }
-        Employee *newEmp = new Employee{id, name, des, sal, nullptr};
-        if(head==nullptr)
-        {
+
+        // 2. IF NO DUPLICATE IS FOUND, PROCEED TO ADD
+        Employee* newEmp = new Employee{id, name, desig, sal, nullptr};
+        
+        if (head == nullptr) {
             head = newEmp;
-        }
-        else
-        {
-            temp = head;
-            while(temp->next!=nullptr)
-            {
+        } else {
+            Employee* temp = head;
+            while (temp->next != nullptr) {
                 temp = temp->next;
             }
             temp->next = newEmp;
-
         }
-
-        temp = temp->next;
-
-        cout << "Employee with ID " << id << " added successfully." << endl;
-
+        
+        // 3. SUCCESS MESSAGE AT THE VERY END
+        cout << "Employee with ID " << id << " added successfully.\n";
     }
-
-    // 2. Allocate memory for the new node
-    Employee *newEmp = new Employee{id, name, des, sal, nullptr};
-
-    // 3. Insert into the list
-    if (head == nullptr)
-    {
-        head = newEmp;
-    }
-    else
-    {
-        temp = head;
-        while (temp->next != nullptr)
-        {
-            temp = temp->next;
-        }
-        temp->next = newEmp;
-    }
-}
     void deleteEmployee(int id)
     {
         if(head==nullptr)
@@ -115,7 +82,7 @@ class Payroll
         }
         else
         {
-            cout << "Error: Employee with ID" << id << " not found." << endl;
+            cout << "Error: Employee with ID " << id << " not found." << endl;
         }
     }
     void updateEmployee(int id, string name, string newdes, double newsal)
@@ -142,7 +109,7 @@ class Payroll
             if(temp->emp_id==id)
             {
                 cout << "\n-----Employee Details-----\n";
-                cout << "Emplpoyee ID: " << temp->emp_id << endl;
+                cout << "Employee ID: " << temp->emp_id << endl;
                 cout << "Name: " << temp->name << endl;
                 cout << "Designation: " << temp->designation << endl;
                 cout << "Salary: " << temp->salary << endl;
@@ -292,7 +259,7 @@ break;
 
 case 6:
 company.saveToFile();
-cout << "Exiting system. best of luck with your mini-project !\n";
+cout << "Exiting system.\n";
 return 0;
 
 default:
