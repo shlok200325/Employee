@@ -25,8 +25,17 @@ class Payroll
 
     void addEmployee(int id,string name,string des, double sal)
     {
+        Employee *checkTemp = head;
+        while(checkTemp!=nullptr)
+        {
+            if(checkTemp->emp_id==id)
+            {
+                cout << "Error: Employee with ID" << id << " already exists." << endl;
+                return;
+            }
+            checkTemp = checkTemp->next;
+        }
         Employee *newEmp = new Employee{id, name, des, sal, nullptr};
-
         if(head==nullptr)
         {
             head = newEmp;
@@ -40,6 +49,7 @@ class Payroll
             }
             temp->next = newEmp;
         }
+        cout << "Employee with ID " << id << " added successfully." << endl;
     }
     void deleteEmployee(int id)
     {
