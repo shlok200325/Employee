@@ -23,32 +23,69 @@ class Payroll
         head = nullptr;
     }
 
-    void addEmployee(int id,string name,string designation, double sal)
+
+  void addEmployee(int id, const string &name, const string &des, double sal)
+{
+    // 1. Check if an employee with this ID already exists
+    Employee *temp = head;
+    while (temp != nullptr)
     {
-        Employee* checkTemp = head;
-        while (checkTemp != nullptr) {
-            if (checkTemp->emp_id == id) {
-                cout << "Error: An employee with ID " << id << " already exists!\n";
-                return; // Stop the function completely so they aren't added
+
+        if (temp->emp_id == id)
+        {
+            cout << "Error: Employee with ID " << id << " already exists." << endl;
+            return;
+        }
+        Employee *checkTemp = head;
+        while(checkTemp!=nullptr)
+        {
+            if(checkTemp->emp_id==id)
+            {
+                cout << "Error: Employee with ID" << id << " already exists." << endl;
+                return;
             }
             checkTemp = checkTemp->next;
         }
-
-        // 2. IF NO DUPLICATE, PROCEED TO ADD
-        Employee* newEmp = new Employee{id, name, designation, sal, nullptr};
-        
-        if (head == nullptr) {
+        Employee *newEmp = new Employee{id, name, des, sal, nullptr};
+        if(head==nullptr)
+        {
             head = newEmp;
-        } else {
-            Employee* temp = head;
-            while (temp->next != nullptr) {
+        }
+        else
+        {
+            temp = head;
+            while(temp->next!=nullptr)
+            {
                 temp = temp->next;
             }
             temp->next = newEmp;
+
         }
-        cout << "Added Employee: " << name << endl;
+
+        temp = temp->next;
+
+        cout << "Employee with ID " << id << " added successfully." << endl;
+
     }
+
+    // 2. Allocate memory for the new node
+    Employee *newEmp = new Employee{id, name, des, sal, nullptr};
+
+    // 3. Insert into the list
+    if (head == nullptr)
+    {
+        head = newEmp;
     }
+    else
+    {
+        temp = head;
+        while (temp->next != nullptr)
+        {
+            temp = temp->next;
+        }
+        temp->next = newEmp;
+    }
+}
     void deleteEmployee(int id)
     {
         if(head==nullptr)
