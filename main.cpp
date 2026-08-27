@@ -23,24 +23,38 @@ class Payroll
         head = nullptr;
     }
 
-    void addEmployee(int id,string name,string des, double sal)
+  void addEmployee(int id, const string &name, const string &des, double sal)
+{
+    // 1. Check if an employee with this ID already exists
+    Employee *temp = head;
+    while (temp != nullptr)
     {
-        Employee *newEmp = new Employee{id, name, des, sal, nullptr};
-
-        if(head==nullptr)
+        if (temp->id == id)
         {
-            head = newEmp;
+            cout << "Error: Employee with ID " << id << " already exists." << endl;
+            return;
         }
-        else
-        {
-            Employee *temp = head;
-            while(temp->next!=nullptr)
-            {
-                temp = temp->next;
-            }
-            temp->next = newEmp;
-        }
+        temp = temp->next;
     }
+
+    // 2. Allocate memory for the new node
+    Employee *newEmp = new Employee{id, name, des, sal, nullptr};
+
+    // 3. Insert into the list
+    if (head == nullptr)
+    {
+        head = newEmp;
+    }
+    else
+    {
+        temp = head;
+        while (temp->next != nullptr)
+        {
+            temp = temp->next;
+        }
+        temp->next = newEmp;
+    }
+}
     void deleteEmployee(int id)
     {
         if(head==nullptr)
