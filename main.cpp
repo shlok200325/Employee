@@ -124,10 +124,54 @@ class Payroll
             double netSalary = temp->salary - tax;
             totalSalary += netSalary;
             
-           cout << "ID: " << temp->id << " | " << temp->name << " (" << temp->designation << ")\n"
+           cout << "ID: " << temp->emp_id << " | " << temp->name << " (" << temp->designation << ")\n"
                  << "   Gross: Rs." << temp->salary << " | Tax (10%): Rs." << tax 
                  << " | Net Pay: Rs." << netSalary << "\n\n";
+
+           temp = temp->next;
         }
+        cout << "====================================\n";
+        cout << "Total Net Salary is Rs. " << totalSalary << endl;
+    }
+    void saveToFile()
+    {
+        ofstream outFile("payroll_data.txt");
+        if(!outFile)
+        {
+            cout << "Error: Unable to open file for writing." << endl;
+            return;
+        }
+        Employee *temp = head;
+        while(temp!=nullptr)
+        {
+            outFile << temp->emp_id << "," << temp->name << "," << temp->designation << "," << temp->salary << "\n";
+            temp = temp->next;
+        }
+        outFile.close();
+        cout << "Data successfully saved." << endl;
+    }
+    void loadFromFile()
+    {
+        ifstream inFile("payroll_data.txt");
+        if(!inFile)
+        {
+            cout << "Error: No previous data found. Starting fresh." << endl;
+            return;
+        }
+        int id;
+        string name, des;
+        double sal;
+        while(inFile>>id)
+        {
+            inFile.ignore();
+            getline(inFile, name, ',');
+            getline(inFile, des, ',');
+            inFile >> sal;
+
+            addEmployee(id, name, des, sal);
+        }
+        inFile.close();
+        cout << "\n----Data loaded successfully----\n";
     }
 };
 
