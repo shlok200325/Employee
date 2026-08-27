@@ -23,33 +23,31 @@ class Payroll
         head = nullptr;
     }
 
-    void addEmployee(int id,string name,string des, double sal)
+    void addEmployee(int id,string name,string designation, double sal)
     {
-        Employee *checkTemp = head;
-        while(checkTemp!=nullptr)
-        {
-            if(checkTemp->emp_id==id)
-            {
-                cout << "Error: Employee with ID" << id << " already exists." << endl;
-                return;
+        Employee* checkTemp = head;
+        while (checkTemp != nullptr) {
+            if (checkTemp->emp_id == id) {
+                cout << "Error: An employee with ID " << id << " already exists!\n";
+                return; // Stop the function completely so they aren't added
             }
             checkTemp = checkTemp->next;
         }
-        Employee *newEmp = new Employee{id, name, des, sal, nullptr};
-        if(head==nullptr)
-        {
+
+        // 2. IF NO DUPLICATE, PROCEED TO ADD
+        Employee* newEmp = new Employee{id, name, designation, sal, nullptr};
+        
+        if (head == nullptr) {
             head = newEmp;
-        }
-        else
-        {
-            Employee *temp = head;
-            while(temp->next!=nullptr)
-            {
+        } else {
+            Employee* temp = head;
+            while (temp->next != nullptr) {
                 temp = temp->next;
             }
             temp->next = newEmp;
         }
-        cout << "Employee with ID " << id << " added successfully." << endl;
+        cout << "Added Employee: " << name << endl;
+    }
     }
     void deleteEmployee(int id)
     {
