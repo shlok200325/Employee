@@ -175,7 +175,90 @@ class Payroll
     }
 };
 
-int main()
+int main(){
+    payroll company;
+    int choice, id;
+    string name, des;
+    double sal;
+    
+    companyloadfromFile()
+
+    while(true){
+        cout <<#n=== PAYROLL SYSTEM MENU ===#n";
+        cout << "1. Add Employee\N";
+        cout << "2. View Employee\n";
+        cout << "3. Update Employee\n";
+        cout << "4. Delete Employee\n";
+        cout << "5. Generate Report\n";
+        cout << "6. Save and Exit\n";
+        court << "Enter your choice: ";
+        cin >> choice;
+    
+  switch (choice){
+case 1;
+coutr << "Enter ID:";
+cin >> id;
+cin.ignore();
+
+cout << "Enter Name :";
+getline(cin, name);
+
+cout << "Enter Designation :";
+getline(cin, des);
+
+cout << "Enter Salary :";
+cin >> sal;
+
+company.addEmployee(id, name , des , sal);
+break;
+
+
+case2:
+cout << "Enter Employee ID to view: ";
+cin >> id;
+company.viewEmployee(id);
+break;
+
+case 3:
+cout <<"Enter Employee ID to update: ";
+cin >> id;
+cin.ignore();
+
+cout << "Enter New Designation: ";
+getline(cin, des);
+
+cout << "Enter New Salary: ";
+cin >> sal;
+
+company.updateEmployee(id, name, des, sal);
+
+break;
+
+case 4:
+cout << "Enter Employee ID to delete: ";
+cin >> id;
+company.deleteEmployee(id);
+break;
+
+case 5:
+company.generateReport();
+break;
+
+case 6:
+company.saveToFile();
+cout << "Exiting system. best of luck with your mini-project !\n";
+return 0;
+
+default:
+cout << "Invalid choice. Please try again.\n";
+
+
+
+  }
+
+    }
+
+}
 {
     return 0;
 }
