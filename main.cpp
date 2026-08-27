@@ -175,28 +175,29 @@ class Payroll
     }
 };
 
-int main(){
-    payroll company;
+int main()
+{
+    Payroll company;
     int choice, id;
     string name, des;
     double sal;
     
-    companyloadfromFile()
+    company.loadFromFile();
 
     while(true){
-        cout <<#n=== PAYROLL SYSTEM MENU ===#n";
+        cout <<"\n=== PAYROLL SYSTEM MENU ===\n";
         cout << "1. Add Employee\n";
         cout << "2. View Employee\n";
         cout << "3. Update Employee\n";
         cout << "4. Delete Employee\n";
         cout << "5. Generate Report\n";
         cout << "6. Save and Exit\n";
-        court << "Enter your choice: ";
+        cout << "Enter your choice: ";
         cin >> choice;
     
   switch (choice){
-case 1;
-coutr << "Enter ID:";
+case 1:
+cout << "Enter ID:";
 cin >> id;
 cin.ignore();
 
@@ -251,14 +252,8 @@ return 0;
 
 default:
 cout << "Invalid choice. Please try again.\n";
-
-
-
-  }
-
+    }
     }
 
-}
-{
     return 0;
 }
