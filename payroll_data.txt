@@ -1,2 +1,3 @@
 101,Shlok,Manager,50000
 103,Kunal,Head Designer,55000
+102,Shrutesh,Asst. Manager,45000
